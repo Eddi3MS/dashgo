@@ -13,13 +13,11 @@ const Sidebar = () => {
             </Text>
             <Stack spacing={4} mt={8} align="stretch">
               {submenu.links.map(({ id, Icon: LinkIcon, title }) => (
-                <Link key={id}>
-                  <Flex align="center">
-                    <Icon as={LinkIcon} fontSize={20} />
-                    <Text ml={4} fontWeight="medium">
-                      {title}
-                    </Text>
-                  </Flex>
+                <Link key={id} display="flex" alignItems="center">
+                  <Icon as={LinkIcon} fontSize={20} />
+                  <Text ml={4} fontWeight="medium">
+                    {title}
+                  </Text>
                 </Link>
               ))}
             </Stack>
