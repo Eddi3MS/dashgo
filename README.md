@@ -7,3 +7,4 @@
 - Next.js
 - Chakra-ui
 - Phosphor-React
+- Context API + Context Selector
