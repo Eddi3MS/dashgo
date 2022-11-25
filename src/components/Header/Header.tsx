@@ -1,8 +1,20 @@
 import React from "react";
-import { Flex, Text } from "@chakra-ui/react";
-import { Actions, Search, User } from "./components";
+import { Flex, Icon, IconButton, useBreakpointValue } from "@chakra-ui/react";
+import { Actions, Search, Profile, Logo } from "./components";
+import { useContextSelector } from "use-context-selector";
+import { List } from "phosphor-react";
+import { SidebarContext } from "../../context";
 
 const Header = () => {
+  const toggleIsOpen = useContextSelector(
+    SidebarContext,
+    (state) => state.toggleIsOpen
+  );
+
+  const isDesktop = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
   return (
     <Flex
       as="header"
@@ -14,19 +26,26 @@ const Header = () => {
       px={6}
       align="center"
     >
-      <Text fontSize="3xl" fontWeight="bold" letterSpacing="tight" w={64}>
-        dashgo
-        <Text as="span" ml={1} color="pink.500">
-          .
-        </Text>
-      </Text>
+      {!isDesktop ? (
+        <IconButton
+          aria-label="Open Sidebar"
+          icon={<Icon as={List} />}
+          fontSize={24}
+          variant="unstyled"
+          onClick={toggleIsOpen}
+          mr={2}
+          display="flex"
+          alignItems="center"
+        />
+      ) : null}
+      <Logo />
 
-      <Search />
+      {isDesktop ? <Search /> : null}
 
       <Flex align="center" ml="auto">
         <Actions />
 
-        <User />
+        <Profile isDesktop={isDesktop} />
       </Flex>
     </Flex>
   );

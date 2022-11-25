@@ -1,29 +1,50 @@
-import React from "react";
-import { Flex, Text, Icon, Stack, Box, Link } from "@chakra-ui/react";
-import { menuConfig } from "./menu-config";
+import {
+  Box,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerHeader,
+  DrawerOverlay,
+  useBreakpointValue,
+} from "@chakra-ui/react";
+import { useContextSelector } from "use-context-selector";
+import { SidebarContext } from "../../context";
+import { SidebarContent } from "./components";
 
 const Sidebar = () => {
+  const { toggleIsOpen, isOpen } = useContextSelector(
+    SidebarContext,
+    (state) => ({
+      toggleIsOpen: state.toggleIsOpen,
+      isOpen: state.isOpen,
+    })
+  );
+
+  const isDrawerSidebar = useBreakpointValue({
+    base: true,
+    lg: false,
+  });
+
+  if (isDrawerSidebar) {
+    return (
+      <Drawer isOpen={isOpen} placement="left" onClose={toggleIsOpen}>
+        <DrawerOverlay>
+          <DrawerContent bg="gray.800" p={4}>
+            <DrawerCloseButton mt={6} />
+            <DrawerHeader>Navegação</DrawerHeader>
+
+            <DrawerBody>
+              <SidebarContent />
+            </DrawerBody>
+          </DrawerContent>
+        </DrawerOverlay>
+      </Drawer>
+    );
+  }
   return (
     <Box as="aside" w={64} mr={8}>
-      <Stack spacing={12} align="flex-start">
-        {Object.entries(menuConfig).map(([_, submenu]) => (
-          <Box key={submenu.title}>
-            <Text fontWeight="bold" color="gray.400" fontSize="small">
-              {submenu.title}
-            </Text>
-            <Stack spacing={4} mt={8} align="stretch">
-              {submenu.links.map(({ id, Icon: LinkIcon, title }) => (
-                <Link key={id} display="flex" alignItems="center">
-                  <Icon as={LinkIcon} fontSize={20} />
-                  <Text ml={4} fontWeight="medium">
-                    {title}
-                  </Text>
-                </Link>
-              ))}
-            </Stack>
-          </Box>
-        ))}
-      </Stack>
+      <SidebarContent />
     </Box>
   );
 };

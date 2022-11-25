@@ -3,11 +3,12 @@ import { Icon, HStack } from "@chakra-ui/react";
 import { Bell, UserPlus } from "phosphor-react";
 
 const Actions = () => {
+  const spacingVariations = [6, 8];
   return (
     <HStack
-      spacing={8}
-      mx={8}
-      pr={8}
+      spacing={spacingVariations}
+      mx={spacingVariations}
+      pr={spacingVariations}
       py={1}
       color="gray.300"
       borderRightWidth={1}
