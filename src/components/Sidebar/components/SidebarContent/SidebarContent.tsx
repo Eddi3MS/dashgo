@@ -10,8 +10,8 @@ const SidebarContent = () => {
       {Object.entries(menuConfig).map(([_, submenu]) => (
         <NavSection title={submenu.title} key={submenu.title}>
           <Stack spacing={4} mt={8} align="stretch">
-            {submenu.links.map(({ id, Icon, title }) => (
-              <NavLink key={id} id={id} icon={Icon}>
+            {submenu.links.map(({ id, Icon, title, href }) => (
+              <NavLink key={id} id={id} icon={Icon} href={href}>
                 {title}
               </NavLink>
             ))}

@@ -9,9 +9,11 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { Header, Input, Sidebar } from "../../../components";
+import Link from "next/link";
 
 const CreateUser = () => {
   const spacingVariables = [6, 8];
+
   return (
     <Box>
       <Header />
@@ -50,7 +52,9 @@ const CreateUser = () => {
           </Stack>
 
           <Flex mt={spacingVariables} justify="flex-end" gap={4}>
-            <Button colorScheme="whiteAlpha">Cancelar</Button>
+            <Button as={Link} href="/users" colorScheme="whiteAlpha">
+              Cancelar
+            </Button>
             <Button colorScheme="pink">Salvar</Button>
           </Flex>
         </Box>

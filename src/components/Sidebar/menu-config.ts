@@ -7,12 +7,15 @@ export const menuConfig = {
       {
         id: '1',
         title: 'Dashboard',
-        Icon: PaperPlaneTilt
+        Icon: PaperPlaneTilt,
+        href: '/dashboard'
       },
       {
         id: '2',
         title: 'Usuários',
-        Icon: Users
+        Icon: Users,
+        href: '/users'
+
       }
     ]
   },
@@ -22,12 +25,16 @@ export const menuConfig = {
       {
         id: '1',
         title: 'Formulários',
-        Icon: Command
+        Icon: Command,
+        href: '/'
+
       },
       {
         id: '2',
         title: 'Automação',
-        Icon: GitMerge
+        Icon: GitMerge,
+        href: '/'
+
       }
     ]
   }

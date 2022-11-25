@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { Header, Pagination, Sidebar, UsersTableRow } from "../../components";
 import { Plus } from "phosphor-react";
+import Link from "next/link";
 
 const UserList = () => {
   const isDesktop = useBreakpointValue({
@@ -33,7 +34,8 @@ const UserList = () => {
               Usuários
             </Heading>
             <Button
-              as="a"
+              as={Link}
+              href="/users/create"
               size="sm"
               fontSize="sm"
               colorScheme="pink"
